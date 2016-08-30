@@ -1,4 +1,6 @@
+<script src="<%= ApplicationController.root_context -%>/static/poyee/jenkins_widget.js"></script>
 <div>
+	<p id="build_number"></p>
 	<a 
 		target="_blank"
 		href='http://<%= widget_properties['JenkinsHost'] %>/job/<%= widget_properties['JenkinsProjectName'] %>/lastBuild/console'>
