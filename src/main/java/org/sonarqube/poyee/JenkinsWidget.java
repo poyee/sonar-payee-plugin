@@ -30,6 +30,6 @@ public class JenkinsWidget extends AbstractRubyTemplate implements RubyRailsWidg
 
 	@Override
 	protected String getTemplatePath() {
-	   return "/my_widget.html.erb";
+	   return "/poyee_widget.html.erb";
 	}
 }
