@@ -1,16 +1,13 @@
 package org.sonarqube.poyee;
 
-import org.sonar.api.Plugin.Context;
-import org.sonar.api.Plugin;
-
-
+import org.sonar.api.SonarPlugin;
 import java.util.*;
 
 
-public class WidgetPlugin implements Plugin
+public class WidgetPlugin extends SonarPlugin
 {
 	@Override
-	public void define(Context context) {
-		context.addExtension(JenkinsWidget.class);
+	public List getExtensions() {
+		return Arrays.asList(JenkinsWidget.class);
 	}
 }
