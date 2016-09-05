@@ -1,5 +1,5 @@
-<% @widget_title=widget_properties['JenkinsProjectName'] %>
 <div>
+	<p><%= widget_properties['JenkinsProjectName'] %></p>
 	<a target="_blank" href='http://<%= widget_properties['JenkinsHost'] %>/job/<%= widget_properties['JenkinsProjectName'] %>/lastBuild/console'>
 		<img id = "<%= widget_properties['JenkinsProjectName'] %>_status" src="<%= ApplicationController.root_context -%>/static/poyee/build-unknown-lightgrey.svg" >
 	</a>
