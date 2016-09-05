@@ -1,21 +1,7 @@
-function accessJenkinsJson(url)
-{   
-    var xmlhttp = new XMLHttpRequest();
-    xmlhttp.onreadystatechange = function() {
-        if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
-            var json = JSON.parse(xmlhttp.responseText);
-            displayJson(json);
-        }
-    };
-    xmlhttp.open("GET", url, true);
-    xmlhttp.send();
-
-}
-
 function displayJson(json) {
     document.getElementById("build_number").innerHTML = "#" + json.number;
     switch(json.result) {
-        case "ABORTED":build
+        case "ABORTED":
             document.getElementById("status").setAttribute("src", "/static/poyee/build-aborted-lightgrey.svg");
             break;
         case "FAILURE":

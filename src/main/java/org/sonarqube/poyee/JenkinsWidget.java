@@ -21,11 +21,11 @@ public class JenkinsWidget extends AbstractRubyTemplate implements RubyRailsWidg
 	  
 	@Override  
 	public String getId() {
-	    return "user-text";
+	    return "jenkins-build-status";
 	}
 	@Override
 	  public String getTitle() {
-	    return "Jenkins Project Build Information";
+	    return "Jenkins Build Status";
 	}
 
 	@Override

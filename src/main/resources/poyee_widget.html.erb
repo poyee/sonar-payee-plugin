@@ -1,14 +1,34 @@
 <% @widget_title=widget_properties['JenkinsProjectName'] %>
-<link rel="stylesheet" type="text/css" href="<%= ApplicationController.root_context -%>/static/poyee/poyee.ccs">
-<script src="<%= ApplicationController.root_context -%>/static/poyee/jenkins_widget.js"></script>
-<script>
-	<% url = "http://" + widget_properties['JenkinsHost'] + "/job/" + widget_properties['JenkinsProjectName'] +  "/lastBuild/api/json" %>
-	accessJenkinsJson("<%= url %>");
-</script>
 <div>
 	<a target="_blank" href='http://<%= widget_properties['JenkinsHost'] %>/job/<%= widget_properties['JenkinsProjectName'] %>/lastBuild/console'>
-		<img id = "status" src="<%= ApplicationController.root_context -%>/static/poyee/build-unknown-lightgrey.svg" >
+		<img id = "<%= widget_properties['JenkinsProjectName'] %>_status" src="<%= ApplicationController.root_context -%>/static/poyee/build-unknown-lightgrey.svg" >
 	</a>
-	<p id ="build_number"></p>
+	<p id ="<%= widget_properties['JenkinsProjectName'] %>_number" class = "build_number"></p>
 </div>
+<link rel="stylesheet" type="text/css" href="<%= ApplicationController.root_context -%>/static/poyee/poyee.css">
+<script>
+function displayJson(json) {
+    document.getElementById("<%= widget_properties['JenkinsProjectName'] %>_number").innerHTML = "#" + json.number;
+    switch(json.result) {
+        case "ABORTED":
+            document.getElementById("<%= widget_properties['JenkinsProjectName'] %>_status").setAttribute("src", "/static/poyee/build-aborted-lightgrey.svg");
+            break;
+        case "FAILURE":
+            document.getElementById("<%= widget_properties['JenkinsProjectName'] %>_status").setAttribute("src", "/static/poyee/build-failing-red.svg");
+            break;
+        case "SUCCESS":
+            document.getElementById("<%= widget_properties['JenkinsProjectName'] %>_status").setAttribute("src", "/static/poyee/build-passing-brightgreen.svg");
+            break;
+        case "UNSTABLE":
+            document.getElementById("<%= widget_properties['JenkinsProjectName'] %>_status").setAttribute("src", "/static/poyee/build-unstable-yellow.svg");
+            break;
+        default:
+            document.getElementById("<%= widget_properties['JenkinsProjectName'] %>_status").setAttribute("src", "/static/poyee/build-unknown-lightgrey.svg");
+            break;
+
+        }
+}
+</script>
+<script src="http://<%= widget_properties['JenkinsHost'] %>/job/<%= widget_properties['JenkinsProjectName'] %>/lastBuild/api/json?jsonp=displayJson">
+</script>
 
