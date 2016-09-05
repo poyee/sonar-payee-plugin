@@ -5,7 +5,15 @@
 	</a>
 	<p id ="<%= widget_properties['JenkinsProjectName'] %>_number" class = "build_number"></p>
 </div>
-<link rel="stylesheet" type="text/css" href="<%= ApplicationController.root_context -%>/static/poyee/poyee.css">
+<style>
+.build_number {
+    font-weight: bold;
+    float:left;
+    margin-top: 0px;
+    margin-right: 5px;
+    text-decoration: underline;
+}
+</style>
 <script>
 function displayJson(json) {
     document.getElementById("<%= widget_properties['JenkinsProjectName'] %>_number").innerHTML = "#" + json.number;
