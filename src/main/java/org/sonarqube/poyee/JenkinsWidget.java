@@ -4,7 +4,7 @@ import org.sonar.api.web.*;
 
 @WidgetScope("GLOBAL")
 @UserRole(UserRole.USER)
-@Description("Displays Jenkins last buld information.")
+@Description("Test Jenkins last buld information.")
 @WidgetCategory({"Global"})
 @WidgetProperties({
   @WidgetProperty(
@@ -21,15 +21,15 @@ public class JenkinsWidget extends AbstractRubyTemplate implements RubyRailsWidg
 	  
 	@Override  
 	public String getId() {
-	    return "jenkins-build-status";
+	    return "jenkins-test-status";
 	}
 	@Override
 	  public String getTitle() {
-	    return "Jenkins Build Status";
+	    return "Jenkins Test Status";
 	}
 
 	@Override
 	protected String getTemplatePath() {
-	   return "/poyee_widget.html.erb";
+	   return "/Users/liupoyee/Documents/workspace/sonar-poyee-plugin/src/main/resources/test.html.erb";
 	}
 }

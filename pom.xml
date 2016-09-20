@@ -5,12 +5,12 @@
 
   
   <groupId>org.sonarqube.poyee</groupId>
-  <artifactId>sonar-poyee-plugin</artifactId>
+  <artifactId>sonar-test-plugin</artifactId>
   <version>0.0.1-SNAPSHOT</version>
   <packaging>sonar-plugin</packaging>
   <description>my first plugin</description>
 
-  <name>sonar-poyee-plugin</name>
+  <name>sonar-test-plugin</name>
   <url>http://maven.apache.org</url>
 
   <properties>
