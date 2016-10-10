@@ -1,0 +1,64 @@
+<% 
+    host = widget_properties['Host']
+    project = widget_properties['Project']
+    partialurl = widget_properties['PartialURL']
+%>
+
+<div id = "<%= project %>">
+	<p><%= project %></p>
+	<a target="_blank" href='http://<%= host %>/job/<%= project %>/<%= partialurl %>'>
+		<img id = <%= "#{project}_#{partialurl}" %>>
+	</a> 
+</div>
+
+
+<style>
+    .build_number {
+        font-weight: bold;
+        float:left;
+        margin-top: 0px;
+        margin-right: 5px;
+        text-decoration: underline;
+    }
+</style>
+
+<script>
+    function displayJson(json) {
+        var para = document.createElement("p");
+        para.setAttribute("class", "build_number");
+        var build_number = "#" + json.number;
+        var node = document.createTextNode(build_number);
+        para.appendChild(node);
+        var element = document.getElementById("<%= project %>");
+        element.appendChild(para);
+
+        var image_id = document.getElementById("<%= "#{project}_#{partialurl}" %>");
+        <%if partialurl == "lastBuild/console" %>
+            switch(json.result) {
+                case "ABORTED":
+                    image_id.setAttribute("src", "/static/poyee/build-aborted-lightgrey.svg");
+                    break;
+                case "FAILURE":
+                    image_id.setAttribute("src", "/static/poyee/build-failing-red.svg");
+                    break;
+                case "SUCCESS":
+                    image_id.setAttribute("src", "/static/poyee/build-passing-brightgreen.svg");
+                    break;
+                case "UNSTABLE":
+                    image_id.setAttribute("src", "/static/poyee/build-unstable-yellow.svg");
+                    break;
+                default:
+                    image_id.setAttribute("src", "/static/poyee/build-unknown-lightgrey.svg");
+                    break;
+
+            }
+        <%end%>
+
+        <%if partialurl == "lastSuccessfulBuild/artifact" %>
+            image_id.setAttribute("src", "/static/poyee/artifact.svg");
+        <%end %>
+    }
+</script>
+<script src="http://<%= host %>/job/<%= project %>/lastBuild/api/json?jsonp=displayJson">
+</script>
+

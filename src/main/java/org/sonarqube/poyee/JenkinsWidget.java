@@ -8,15 +8,18 @@ import org.sonar.api.web.*;
 @WidgetCategory({"Global"})
 @WidgetProperties({
   @WidgetProperty(
-    key = "JenkinsHost",
+    key = "Host",
     description = "Jenkins host URL"
   ),
   @WidgetProperty(
-	key = "JenkinsProjectName",
+	key = "Project",
     description = "Jenkins project name"
   ),
+  @WidgetProperty(
+	key = "PartialURL",
+	description = "Partial URL"
+  )
 })
-
 public class JenkinsWidget extends AbstractRubyTemplate implements RubyRailsWidget{
 	  
 	@Override  
@@ -30,6 +33,6 @@ public class JenkinsWidget extends AbstractRubyTemplate implements RubyRailsWidg
 
 	@Override
 	protected String getTemplatePath() {
-	   return "/poyee_widget.html.erb";
+	   return "/jenkins.html.erb";
 	}
 }
